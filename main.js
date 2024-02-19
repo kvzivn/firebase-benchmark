@@ -20,7 +20,7 @@ const init = async () => {
       form.addEventListener('submit', function(e){
           e.preventDefault();
 
-          const submitButton = form.querySelector('.cta-button.w-button');
+          const submitButton = form.querySelector('.w-button');
           const originalSubmitValue = submitButton.value;
           submitButton.value = submitButton.getAttribute('data-wait');
 
