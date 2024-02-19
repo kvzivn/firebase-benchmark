@@ -2,7 +2,7 @@ const functions = require("firebase-functions");
 
 const API_ENDPOINT =
   "https://clientapi.benchmarkemail.com/Contact/21019657/ContactDetails";
-const AUTH_TOKEN = "D23C5BAF-4998-4ABF-B2CE-5F3789423718";
+const AUTH_TOKEN = functions.config().benchmark.key;
 
 exports.addBenchmarkContact = functions.https.onCall(async (data, context) => {
   const response = await fetch(API_ENDPOINT, {

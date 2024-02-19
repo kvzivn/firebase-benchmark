@@ -17,27 +17,42 @@ const init = async () => {
   const forms = document.querySelectorAll('[name="wf-form-newsletter-signup-form"]');
 
   forms.forEach((form) => {
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
+      form.addEventListener('submit', function(e){
+          e.preventDefault();
 
-      var formData = new FormData(e.target);
-      var email = formData.get('Email');
+          const submitButton = form.querySelector('.cta-button.w-button');
+          const originalSubmitValue = submitButton.value;
+          submitButton.value = submitButton.getAttribute('data-wait');
 
-      if (!email) {
-        console.log('No valid email field found in the form.');
-        return;
-      }
+          var formData = new FormData(e.target);
+          var email = formData.get('Email');
 
-      addBenchmarkContact({ email })
-        .then(() => {
-          form.innerHTML = '<div class="text-large text-neutral-white">Thank you for subscribing to our newsletter!</div>';
-        })
-        .catch((error) => {
-          console.log(error.message);
-          form.innerHTML = '<div class="text-large text-neutral-white">Something went wrong while submitting the form.</div>';
-        });
-    });
+          if (!email) {
+              console.log('No valid email field found in the form.');
+              return;
+          }
+
+          addBenchmarkContact({ email })
+            .then((result) => {
+                console.log(result.data);
+                form.style.display = 'none';
+                document.querySelector('.newsletter-success-message').style.display = 'block';
+            })
+            .catch((error) => {
+                console.log(error.message);
+                document.querySelector('.newsletter-error-message').style.display = 'block';
+            })
+            .finally(() => {
+                submitButton.value = originalSubmitValue;
+            });
+      });
   });
 }
 
+
 init()
+
+
+
+
+
