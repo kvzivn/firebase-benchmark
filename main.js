@@ -20,6 +20,8 @@ const init = async () => {
       form.addEventListener('submit', function(e){
           e.preventDefault();
 
+          const successMessages = document.querySelectorAll('.newsletter-cta-success-message')
+          const errorMessages = document.querySelector('.newsletter-cta-error-message')
           const submitButton = form.querySelector('.w-button');
           const originalSubmitValue = submitButton.value;
           submitButton.value = submitButton.getAttribute('data-wait');
@@ -36,11 +38,11 @@ const init = async () => {
             .then((result) => {
                 console.log(result.data);
                 form.style.display = 'none';
-                document.querySelector('.newsletter-cta-success-message').style.display = 'block';
+                successMessages.forEach(m => m.style.display = 'block')
             })
             .catch((error) => {
                 console.log(error.message);
-                document.querySelector('.newsletter-cta-error-message').style.display = 'block';
+                errorMessages.forEach(m => m.style.display = 'block');
             })
             .finally(() => {
                 submitButton.value = originalSubmitValue;
