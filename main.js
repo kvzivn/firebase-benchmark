@@ -29,11 +29,12 @@ const init = async () => {
       }
 
       addBenchmarkContact({ email })
-        .then((result) => {
-          console.log(result.data);
+        .then(() => {
+          form.innerHTML = '<div class="text-large text-neutral-white">Thank you for subscribing to our newsletter!</div>';
         })
         .catch((error) => {
           console.log(error.message);
+          form.innerHTML = '<div class="text-large text-neutral-white">Something went wrong while submitting the form.</div>';
         });
     });
   });
