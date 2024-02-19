@@ -36,11 +36,11 @@ const init = async () => {
             .then((result) => {
                 console.log(result.data);
                 form.style.display = 'none';
-                document.querySelector('.newsletter-success-message').style.display = 'block';
+                document.querySelector('.newsletter-cta-success-message').style.display = 'block';
             })
             .catch((error) => {
                 console.log(error.message);
-                document.querySelector('.newsletter-error-message').style.display = 'block';
+                document.querySelector('.newsletter-cta-error-message').style.display = 'block';
             })
             .finally(() => {
                 submitButton.value = originalSubmitValue;
