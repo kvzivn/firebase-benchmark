@@ -35,8 +35,7 @@ const init = async () => {
           }
 
           addBenchmarkContact({ email })
-            .then((result) => {
-                console.log(result.data);
+            .then(() => {
                 form.style.display = 'none';
                 successMessages.forEach(m => m.style.display = 'block')
             })
