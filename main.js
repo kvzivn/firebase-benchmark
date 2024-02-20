@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBa9HRh52NoydE0YYUoDqQmMiN2Pqxtl7Y",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "benchmark-add-contact.firebaseapp.com",
   projectId: "benchmark-add-contact",
   storageBucket: "benchmark-add-contact.appspot.com",
